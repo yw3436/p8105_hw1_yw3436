@@ -5,7 +5,6 @@ date: "9/14/2020"
 output: html_document
 ---
 
-
 # Homework 1
 
 ### Problem 1
@@ -61,10 +60,28 @@ as.numeric(as.factor(problem1_df$logic_vec)) * (problem1_df$random_num)
 
 The result of the calculations shows that factor vector cannot be used in numeric calculation.
 
+### Problem 2
 
+```{r}
+#install.packages("palmerpenguins")
 
+data("penguins", package = "palmerpenguins")
+```
 
+Description of the `penguins` dataset:
 
+the data in this dataset, including names / values of important variables
 
+The `penguins` data set includes `r ncol(penguins)` variables to describe the characteristics for `r nrow(penguins)` observations. The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm.
+
+#### Scatterplot
+
+```{r}
+# build the scatterplot between bill length and flipper length
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+
+# save the plot to the project directory
+ggsave("penguin.pdf", height = 5, width = 4)
+```
 
 
