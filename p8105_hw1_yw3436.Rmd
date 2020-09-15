@@ -1,50 +1,51 @@
 ---
-title: "p8105_hw1_yw3436"
+title: "Homework 1"
 author: "Yuqi Wang"
 date: "9/14/2020"
 output: html_document
 ---
 
-# Homework 1
-
-### Problem 1
-
-The following is a data frame that contains
-
-* a random sample of size 10 from a standard Normal distribution
-* a logical vector indicating whether elements of the sample are greater than 0
-* a character vector of length 10
-* a factor vector of length 10, with 3 different factor “levels”
+This is my solution to Homework 1.
 
 ```{r}
 library(tidyverse)
+```
 
-problem1_df = tibble(
+
+## Problem 1
+
+Create a data frame with the specified elements.
+
+```{r create_df}
+problem1_df <- tibble(
   random_num = rnorm(n = 10),
   logic_vec = random_num > 0,
-  char_vec = c("a", "a", "a", "b", "b", "b", "c", "c", "c", "c"),
-  factor_vec = factor(char_vec, c("a", "b", "c"))
+  char_vec = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+  factor_vec = factor(c("low", "low", "low", "mid", "mid", "mid", "high", "high", "high", "low"))
 )
 
 problem1_df
+```
 
-# Next, we take the mean of the four columns in the data frame.
 
-mean(problem1_df$random_num)
-mean(problem1_df$logic_vec)
-mean(problem1_df$char_vec)
-mean(problem1_df$factor_vec)
+Next, we take the mean of the four columns in the data frame.
 
+```{r pull_mean}
+mean(pull(problem1_df, random_num))
+mean(pull(problem1_df, logic_vec))
+mean(pull(problem1_df, char_vec))
+mean(pull(problem1_df, factor_vec))
 ```
 
 The results of the mean function shows that the mean of numeric variable and logic vector can be calculated, while character vector and factor vector do not work.
 
 Using `as.numeric` function to convert variable type:
 
-```{r eval=FALSE}
-as.numeric(problem1_df$logic_vec)
-as.numeric(problem1_df$char_vec)
-as.numeric(problem1_df$factor_vec)
+```{r change_type, eval=FALSE}
+as.numeric(pull(problem1_df, random_num))
+as.numeric(pull(problem1_df, logic_vec))
+as.numeric(pull(problem1_df, char_vec))
+as.numeric(pull(problem1_df, factor_vec))
 ```
 
 The result of `as.numeric` shows that logical vector and factor vector can be converted to numeric variables, while character vector can not been converted. This helps to explain that we can take the mean of the logical vector, but for factor vector, we can not calculate the mean because of its character feature.
@@ -52,15 +53,15 @@ The result of `as.numeric` shows that logical vector and factor vector can be co
 
 The following are the calculations for variable type conversion and the product with the random sample:
 
-```{r}
-as.numeric(problem1_df$logic_vec) * (problem1_df$random_num)
-as.factor(problem1_df$logic_vec) * (problem1_df$random_num)
-as.numeric(as.factor(problem1_df$logic_vec)) * (problem1_df$random_num)
+```{r calculation}
+as.numeric(pull(problem1_df, logic_vec)) * pull(problem1_df, random_num)
+as.factor(pull(problem1_df, logic_vec)) * pull(problem1_df, random_num)
+as.numeric(as.factor(pull(problem1_df, logic_vec))) * pull(problem1_df, random_num)
 ```
 
-The result of the calculations shows that factor vector cannot be used in numeric calculation.
+The result shows that factor vector cannot be used for calculation.
 
-### Problem 2
+## Problem 2
 
 ```{r}
 #install.packages("palmerpenguins")
