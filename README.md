@@ -1,2 +1,4 @@
 # p8105_hw1_yw3436
-Homework 1 for DS
+
+
+This is the first homework for data science.
