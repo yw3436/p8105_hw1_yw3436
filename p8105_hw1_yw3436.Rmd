@@ -1,0 +1,26 @@
+---
+title: "p8105_hw1_yw3436"
+author: "Yuqi Wang"
+date: "9/14/2020"
+output: html_document
+---
+
+
+#Homework 1
+
+###Problem 1
+
+```{r}
+library(tidyverse)
+
+factor_level = c
+problem1_df = tibble(
+  random_num = rnorm(n = 10),
+  logic_vec = random_num > 0,
+  char_vec = c("a", "a", "a", "b", "b", "b", "c", "c", "c", "c"),
+  factor_vec = factor(char_vec, c("a", "b", "c"))
+)
+
+problem1_df
+```
+
