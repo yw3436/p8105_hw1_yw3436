@@ -400,22 +400,22 @@ problem1_df</code></pre>
 <pre><code>## # A tibble: 10 x 4
 ##    random_num logic_vec char_vec factor_vec
 ##         &lt;dbl&gt; &lt;lgl&gt;     &lt;chr&gt;    &lt;fct&gt;     
-##  1      0.844 TRUE      a        a         
-##  2      0.454 TRUE      a        a         
-##  3     -2.26  FALSE     a        a         
-##  4      0.835 TRUE      b        b         
-##  5      0.307 TRUE      b        b         
-##  6      0.595 TRUE      b        b         
-##  7     -0.754 FALSE     c        c         
-##  8      0.956 TRUE      c        c         
-##  9      0.847 TRUE      c        c         
-## 10     -0.322 FALSE     c        c</code></pre>
+##  1     0.378  TRUE      a        a         
+##  2     0.605  TRUE      a        a         
+##  3     0.0580 TRUE      a        a         
+##  4     0.688  TRUE      b        b         
+##  5    -1.41   FALSE     b        b         
+##  6    -1.06   FALSE     b        b         
+##  7     0.213  TRUE      c        c         
+##  8    -1.13   FALSE     c        c         
+##  9    -1.11   FALSE     c        c         
+## 10    -0.106  FALSE     c        c</code></pre>
 <pre class="r"><code># Next, we take the mean of the four columns in the data frame.
 
 mean(problem1_df$random_num)</code></pre>
-<pre><code>## [1] 0.1499748</code></pre>
+<pre><code>## [1] -0.2874042</code></pre>
 <pre class="r"><code>mean(problem1_df$logic_vec)</code></pre>
-<pre><code>## [1] 0.7</code></pre>
+<pre><code>## [1] 0.5</code></pre>
 <pre class="r"><code>mean(problem1_df$char_vec)</code></pre>
 <pre><code>## Warning in mean.default(problem1_df$char_vec): argument is not numeric or
 ## logical: returning NA</code></pre>
@@ -425,6 +425,23 @@ mean(problem1_df$random_num)</code></pre>
 ## logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>The results of the mean function shows that the mean of numeric variable and logic vector can be calculated, while character vector and factor vector do not work.</p>
+<p>Using <code>as.numeric</code> function to convert variable type:</p>
+<pre class="r"><code>as.numeric(problem1_df$logic_vec)
+as.numeric(problem1_df$char_vec)
+as.numeric(problem1_df$factor_vec)</code></pre>
+<p>The result of <code>as.numeric</code> shows that logical vector and factor vector can be converted to numeric variables, while character vector can not been converted. This helps to explain that we can take the mean of the logical vector, but for factor vector, we can not calculate the mean because of its character feature.</p>
+<p>The following are the calculations for variable type conversion and the product with the random sample:</p>
+<pre class="r"><code>as.numeric(problem1_df$logic_vec) * (problem1_df$random_num)</code></pre>
+<pre><code>##  [1] 0.37802652 0.60487432 0.05801662 0.68752443 0.00000000 0.00000000
+##  [7] 0.21297510 0.00000000 0.00000000 0.00000000</code></pre>
+<pre class="r"><code>as.factor(problem1_df$logic_vec) * (problem1_df$random_num)</code></pre>
+<pre><code>## Warning in Ops.factor(as.factor(problem1_df$logic_vec),
+## (problem1_df$random_num)): &#39;*&#39; not meaningful for factors</code></pre>
+<pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
+<pre class="r"><code>as.numeric(as.factor(problem1_df$logic_vec)) * (problem1_df$random_num)</code></pre>
+<pre><code>##  [1]  0.7560530  1.2097486  0.1160332  1.3750489 -1.4089798 -1.0644427
+##  [7]  0.4259502 -1.1295922 -1.1068459 -0.1055981</code></pre>
+<p>The result of the calculations shows that factor vector cannot be used in numeric calculation.</p>
 </div>
 </div>
 

@@ -40,4 +40,31 @@ mean(problem1_df$factor_vec)
 
 The results of the mean function shows that the mean of numeric variable and logic vector can be calculated, while character vector and factor vector do not work.
 
+Using `as.numeric` function to convert variable type:
+
+```{r eval=FALSE}
+as.numeric(problem1_df$logic_vec)
+as.numeric(problem1_df$char_vec)
+as.numeric(problem1_df$factor_vec)
+```
+
+The result of `as.numeric` shows that logical vector and factor vector can be converted to numeric variables, while character vector can not been converted. This helps to explain that we can take the mean of the logical vector, but for factor vector, we can not calculate the mean because of its character feature.
+
+
+The following are the calculations for variable type conversion and the product with the random sample:
+
+```{r}
+as.numeric(problem1_df$logic_vec) * (problem1_df$random_num)
+as.factor(problem1_df$logic_vec) * (problem1_df$random_num)
+as.numeric(as.factor(problem1_df$logic_vec)) * (problem1_df$random_num)
+```
+
+The result of the calculations shows that factor vector cannot be used in numeric calculation.
+
+
+
+
+
+
+
 
