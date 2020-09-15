@@ -6,14 +6,20 @@ output: html_document
 ---
 
 
-#Homework 1
+# Homework 1
 
-###Problem 1
+### Problem 1
+
+The following is a data frame that contains
+
+* a random sample of size 10 from a standard Normal distribution
+* a logical vector indicating whether elements of the sample are greater than 0
+* a character vector of length 10
+* a factor vector of length 10, with 3 different factor “levels”
 
 ```{r}
 library(tidyverse)
 
-factor_level = c
 problem1_df = tibble(
   random_num = rnorm(n = 10),
   logic_vec = random_num > 0,
@@ -22,5 +28,16 @@ problem1_df = tibble(
 )
 
 problem1_df
+
+# Next, we take the mean of the four columns in the data frame.
+
+mean(problem1_df$random_num)
+mean(problem1_df$logic_vec)
+mean(problem1_df$char_vec)
+mean(problem1_df$factor_vec)
+
 ```
+
+The results of the mean function shows that the mean of numeric variable and logic vector can be calculated, while character vector and factor vector do not work.
+
 
