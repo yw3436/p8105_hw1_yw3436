@@ -393,21 +393,21 @@ problem1_df</code></pre>
 <pre><code>## # A tibble: 10 x 4
 ##    random_num logic_vec char_vec factor_vec
 ##         &lt;dbl&gt; &lt;lgl&gt;     &lt;chr&gt;    &lt;fct&gt;     
-##  1    0.00639 TRUE      a        low       
-##  2    1.13    TRUE      b        low       
-##  3    2.46    TRUE      c        low       
-##  4    1.47    TRUE      d        mid       
-##  5   -0.585   FALSE     e        mid       
-##  6   -0.327   FALSE     f        mid       
-##  7   -1.43    FALSE     g        high      
-##  8    0.620   TRUE      h        high      
-##  9    1.59    TRUE      i        high      
-## 10    0.237   TRUE      j        low</code></pre>
+##  1     -0.808 FALSE     a        low       
+##  2      1.73  TRUE      b        low       
+##  3     -0.444 FALSE     c        low       
+##  4      0.590 TRUE      d        mid       
+##  5     -0.308 FALSE     e        mid       
+##  6      0.320 TRUE      f        mid       
+##  7     -0.214 FALSE     g        high      
+##  8      1.85  TRUE      h        high      
+##  9     -1.43  FALSE     i        high      
+## 10     -0.574 FALSE     j        low</code></pre>
 <p>Next, we take the mean of the four columns in the data frame.</p>
 <pre class="r"><code>mean(pull(problem1_df, random_num))</code></pre>
-<pre><code>## [1] 0.5171595</code></pre>
+<pre><code>## [1] 0.07127046</code></pre>
 <pre class="r"><code>mean(pull(problem1_df, logic_vec))</code></pre>
-<pre><code>## [1] 0.7</code></pre>
+<pre><code>## [1] 0.4</code></pre>
 <pre class="r"><code>mean(pull(problem1_df, char_vec))</code></pre>
 <pre><code>## Warning in mean.default(pull(problem1_df, char_vec)): argument is not numeric or
 ## logical: returning NA</code></pre>
@@ -425,25 +425,33 @@ as.numeric(pull(problem1_df, factor_vec))</code></pre>
 <p>The result of <code>as.numeric</code> shows that logical vector and factor vector can be converted to numeric variables, while character vector can not been converted. This helps to explain that we can take the mean of the logical vector, but for factor vector, we can not calculate the mean because of its character feature.</p>
 <p>The following are the calculations for variable type conversion and the product with the random sample:</p>
 <pre class="r"><code>as.numeric(pull(problem1_df, logic_vec)) * pull(problem1_df, random_num)</code></pre>
-<pre><code>##  [1] 0.006385914 1.126359280 2.464366499 1.468099025 0.000000000 0.000000000
-##  [7] 0.000000000 0.619866209 1.593481315 0.237348000</code></pre>
+<pre><code>##  [1] 0.0000000 1.7299290 0.0000000 0.5900167 0.0000000 0.3197376 0.0000000
+##  [8] 1.8469987 0.0000000 0.0000000</code></pre>
 <pre class="r"><code>as.factor(pull(problem1_df, logic_vec)) * pull(problem1_df, random_num)</code></pre>
 <pre><code>## Warning in Ops.factor(as.factor(pull(problem1_df, logic_vec)),
 ## pull(problem1_df, : &#39;*&#39; not meaningful for factors</code></pre>
 <pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
 <pre class="r"><code>as.numeric(as.factor(pull(problem1_df, logic_vec))) * pull(problem1_df, random_num)</code></pre>
-<pre><code>##  [1]  0.01277183  2.25271856  4.92873300  2.93619805 -0.58480303 -0.32667932
-##  [7] -1.43282882  1.23973242  3.18696263  0.47469600</code></pre>
+<pre><code>##  [1] -0.8082452  3.4598579 -0.4440092  1.1800334 -0.3080826  0.6394752
+##  [7] -0.2144037  3.6939974 -1.4257330 -0.5735037</code></pre>
 <p>The result shows that factor vector cannot be used for calculation.</p>
 </div>
 <div id="problem-2" class="section level2">
 <h2>Problem 2</h2>
-<pre class="r"><code>#install.packages(&quot;palmerpenguins&quot;)
-
-data(&quot;penguins&quot;, package = &quot;palmerpenguins&quot;)</code></pre>
+<pre class="r"><code>data(&quot;penguins&quot;, package = &quot;palmerpenguins&quot;)</code></pre>
 <p>Description of the <code>penguins</code> dataset:</p>
-<p>the data in this dataset, including names / values of important variables</p>
-<p>The <code>penguins</code> data set includes 8 variables to describe the characteristics for 344 observations. The mean flipper length is 200.9152047 mm.</p>
+<ul>
+<li><p>The <code>penguins</code> data set collected data for penguins of the following species: Adelie, Gentoo, Chinstrap. These penguins were from Torgersen, Biscoe, Dream and the data was collected for year 2007, 2008, 2009. The data set contains variables including bill_depth_mm, bill_length_mm, body_mass_g, flipper_length_mm, island, sex, species, year.</p>
+<ul>
+<li><p>The maximum of bill length is 59.6 mm, the minimum of bill length is 32.1 mm, and the mean is 43.9219298 mm.</p></li>
+<li><p>The maximum of bill depth is 21.5 mm, the minimum of bill depth is 13.1 mm, and the mean is 17.1511696 mm.</p></li>
+<li><p>The maximum of flipper length is 231 mm, the minimum of bill depth is 172 mm.</p></li>
+<li><p>The maximum of body mass is 6300 g, the minimum of bill depth is 2700 g, and the mean is 4201.754386 g.</p></li>
+<li><p>The numbers of female, male and sex-unspecified penguins are 165, 168, 11.</p></li>
+</ul></li>
+<li><p>The <code>penguins</code> data set includes 8 variables to describe the characteristics for 344 observations.</p></li>
+<li><p>The mean flipper length is 200.92 mm.</p></li>
+</ul>
 <div id="scatterplot" class="section level4">
 <h4>Scatterplot</h4>
 <pre class="r"><code># build the scatterplot between bill length and flipper length

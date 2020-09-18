@@ -64,16 +64,26 @@ The result shows that factor vector cannot be used for calculation.
 ## Problem 2
 
 ```{r}
-#install.packages("palmerpenguins")
-
 data("penguins", package = "palmerpenguins")
 ```
 
 Description of the `penguins` dataset:
 
-the data in this dataset, including names / values of important variables
+* The `penguins` data set collected data for penguins of the following species: `r unique(penguins$species)`. These penguins were from `r unique(penguins$island)` and the data was collected for year `r unique(penguins$year)`. The data set contains variables including `r ls(penguins)`.
 
-The `penguins` data set includes `r ncol(penguins)` variables to describe the characteristics for `r nrow(penguins)` observations. The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm.
+  * The maximum of bill length is `r max(penguins$bill_length_mm, na.rm = TRUE)` mm, the minimum of bill length is `r min(penguins$bill_length_mm, na.rm = TRUE)` mm, and the mean is `r mean(penguins$bill_length_mm, na.rm = TRUE)` mm.
+
+  * The maximum of bill depth is `r max(penguins$bill_depth_mm, na.rm = TRUE)` mm, the minimum of bill depth is `r min(penguins$bill_depth_mm, na.rm = TRUE)` mm, and the mean is `r mean(penguins$bill_depth_mm, na.rm = TRUE)` mm.
+
+  * The maximum of flipper length is `r max(penguins$flipper_length_mm, na.rm = TRUE)` mm, the minimum of bill depth is `r min(penguins$flipper_length_mm, na.rm = TRUE)` mm.
+
+  * The maximum of body mass is `r max(penguins$body_mass_g, na.rm = TRUE)` g, the minimum of bill depth is `r min(penguins$body_mass_g, na.rm = TRUE)` g, and the mean is `r mean(penguins$body_mass_g, na.rm = TRUE)` g.
+
+  * The numbers of female, male and sex-unspecified penguins are `r summary(penguins$sex)`.
+
+* The `penguins` data set includes `r ncol(penguins)` variables to describe the characteristics for `r nrow(penguins)` observations. 
+
+* The mean flipper length is `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), digits = 2)` mm. 
 
 #### Scatterplot
 
@@ -84,5 +94,3 @@ ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)
 # save the plot to the project directory
 ggsave("penguin.pdf", height = 5, width = 4)
 ```
-
-
