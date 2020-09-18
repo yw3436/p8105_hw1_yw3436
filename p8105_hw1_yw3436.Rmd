@@ -11,7 +11,6 @@ This is my solution to Homework 1.
 library(tidyverse)
 ```
 
-
 ## Problem 1
 
 Create a data frame with the specified elements.
@@ -41,15 +40,14 @@ The results of the mean function shows that the mean of numeric variable and log
 
 Using `as.numeric` function to convert variable type:
 
-```{r change_type, eval=FALSE}
+```{r change_type, eval = FALSE}
 as.numeric(pull(problem1_df, random_num))
 as.numeric(pull(problem1_df, logic_vec))
 as.numeric(pull(problem1_df, char_vec))
 as.numeric(pull(problem1_df, factor_vec))
 ```
 
-The result of `as.numeric` shows that logical vector and factor vector can be converted to numeric variables, while character vector can not been converted. This helps to explain that we can take the mean of the logical vector, but for factor vector, we can not calculate the mean because of its character feature.
-
+The result of `as.numeric` shows that logical vector and factor vector can be converted to numeric variables, while character vector can not been converted. This helps to explain that we can take the mean of the logical vector, but for factor vector, we can not calculate the mean because factor represents categories, and taking the mean for categories is not meaningful.
 
 The following are the calculations for variable type conversion and the product with the random sample:
 
@@ -69,21 +67,21 @@ data("penguins", package = "palmerpenguins")
 
 Description of the `penguins` dataset:
 
-* The `penguins` data set collected data for penguins of the following species: `r unique(penguins$species)`. These penguins were from `r unique(penguins$island)` and the data was collected for year `r unique(penguins$year)`. The data set contains variables including `r ls(penguins)`.
+* The `penguins` data set collected data for penguins of the following species: `r unique(pull(penguins,species))`. These penguins were from `r unique(pull(penguins,island))` and the data was collected in year `r unique(pull(penguins,year))`. The data set contains variables including `r ls(penguins)`.
 
-  * The maximum of bill length is `r max(penguins$bill_length_mm, na.rm = TRUE)` mm, the minimum of bill length is `r min(penguins$bill_length_mm, na.rm = TRUE)` mm, and the mean is `r mean(penguins$bill_length_mm, na.rm = TRUE)` mm.
+  * The maximum of bill length is `r max(pull(penguins,bill_length_mm), na.rm = TRUE)` mm, the minimum of bill length is `r min(pull(penguins,bill_length_mm), na.rm = TRUE)` mm, and the mean is `r mean(pull(penguins,bill_length_mm), na.rm = TRUE)` mm.
 
-  * The maximum of bill depth is `r max(penguins$bill_depth_mm, na.rm = TRUE)` mm, the minimum of bill depth is `r min(penguins$bill_depth_mm, na.rm = TRUE)` mm, and the mean is `r mean(penguins$bill_depth_mm, na.rm = TRUE)` mm.
+  * The maximum of bill depth is `r max(pull(penguins,bill_depth_mm), na.rm = TRUE)` mm, the minimum of bill depth is `r min(pull(penguins,bill_depth_mm), na.rm = TRUE)` mm, and the mean is `r mean(pull(penguins,bill_depth_mm), na.rm = TRUE)` mm.
 
-  * The maximum of flipper length is `r max(penguins$flipper_length_mm, na.rm = TRUE)` mm, the minimum of bill depth is `r min(penguins$flipper_length_mm, na.rm = TRUE)` mm.
+  * The maximum of flipper length is `r max(pull(penguins,flipper_length_mm), na.rm = TRUE)` mm, the minimum of bill depth is `r min(pull(penguins,flipper_length_mm), na.rm = TRUE)` mm.
 
-  * The maximum of body mass is `r max(penguins$body_mass_g, na.rm = TRUE)` g, the minimum of bill depth is `r min(penguins$body_mass_g, na.rm = TRUE)` g, and the mean is `r mean(penguins$body_mass_g, na.rm = TRUE)` g.
+  * The maximum of body mass is `r max(pull(penguins,body_mass_g), na.rm = TRUE)` g, the minimum of bill depth is `r min(pull(penguins,body_mass_g), na.rm = TRUE)` g, and the mean is `r mean(pull(penguins,body_mass_g), na.rm = TRUE)` g.
 
   * The numbers of female, male and sex-unspecified penguins are `r summary(penguins$sex)`.
 
 * The `penguins` data set includes `r ncol(penguins)` variables to describe the characteristics for `r nrow(penguins)` observations. 
 
-* The mean flipper length is `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), digits = 2)` mm. 
+* The mean flipper length is `r round(mean(pull(penguins,flipper_length_mm), na.rm = TRUE), digits = 2)` mm. 
 
 #### Scatterplot
 
@@ -92,5 +90,6 @@ Description of the `penguins` dataset:
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
 
 # save the plot to the project directory
-ggsave("penguin.pdf", height = 5, width = 4)
+ggsave("penguin.pdf", height = 5, width = 5)
 ```
+
